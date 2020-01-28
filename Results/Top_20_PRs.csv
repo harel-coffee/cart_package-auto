@@ -1,0 +1,2076 @@
+Pull_Request_ID,label,Score,Title,Body,Type,
+salt-44007,3,0,add python exec module for running python script,"What does this PR do?
+For show_full_context, it is useful to have this as a serializable dictionary so that it can be dumped and actually parsed using
+{{show_full_context|yaml(False)}}
+What issues does this PR fix or reference?
+Previous Behavior
+show_full_context returns an object mapping
+New Behavior
+show_full_context returns a serializable dictionary
+Tests written?
+No
+Moved from #43940",new_feature,
+django-9714,0,0,Updated project template to use single quotes where appropriate.,"I didn't file a ticket for this, it seems a trivial change since the style guide says to use single quotes where possible. But I am also new to django contribution, so I might be missing something (I couldn't find any relevant discussions).",new_feature,
+scikit-learn-10452,0,0,[MRG+1] ENH Polynomial features for sparse data,"Fixes #8376
+Again fed up with users asking for something quite simple but the contribution never getting finished.",new_feature,
+framework-21386,3,0,[5.6] Add batch number to `migrate:status` command,"Add the batch number to migrate:status command
+so I don't need to fallback to db to see batch number",new_feature,
+nixpkgs-29245,0,0,qfsm: fix build with gcc 6,"Motivation for this change
+fixes one item in #28643
+Things done
+Built locally, ran the resulting binary.
+Program runs as expected, but there was a segfault when exiting.
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+tensorflow-16879,3,0,"[DO NOT MERGE] Testing: Revert ""Dropping the Microsoft from the Visual Studio""",Reverts tensorflow/tensorflow#16848,other,
+nixpkgs-32518,0,0,gmailieer: 0.4 -> 0.5,"Motivation for this change
+Update to the latest upstream version
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,package
+nixpkgs-29497,3,0,stupidterm: init at 1-752316a,"Motivation for this change
+Stupidterm is a simple wrapper around the VTE terminal emulator widget for GTK+
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+symfony-24119,3,0,[travis] ldap.so is shared only on 7.0,"QA
+
+Branch?
+2.7
+bug_fix?
+no
+New feature?
+no
+
+BC breaks?
+no
+Deprecations?
+no
+Tests pass?
+yes
+
+Fixed tickets
+License
+MIT
+Doc PR",Doc PR,
+django-9281,0,0,Fixed #28739 -- Fixed get_fixed_timezone() for negative timedeltas.,"(Fix requires Python 3.2+ or 2.7+; should be suitable
+for any Django version as far back as 1.8.)",bug_fix,
+salt-43773,0,0,[2017.7] Merge forward from 2016.11 to 2017.7,No conflicts.,version_update,
+rails-31727,1,1,Refactor migration to move migrations paths to connection,"Rails has some support for multiple databases but it can be hard to handle migrations with those. The easiest way to implement multiple databases is to contain migrations into their own folder (""db/migrate"" for the primary db and ""db/seconddb_migrate"" for the second db). Without this you would need to write code that allowed you to switch connections in migrations. I can tell you from experience that is not a fun way to implement multiple databases.
+This refactoring is a pre-requisite for implementing other features related to parallel testing and improved handling for multiple databases. The refactoring here moves the class methods from the Migrator class into it's own new class MigrationContext. The goal was to move the migrations_paths method off of the Migrator class and onto the connection. This allows users to do the following in their
+database.yml:
+development:
+  adapter: mysql2
+  username: root
+  password:
+development_seconddb:
+  adapter: mysql2
+  username: root
+  password:
+  migrations_paths: ""db/second_db_migrate""
+Migrations for the seconddb can now be store in the db/second_db_migrate directory. Migrations for the primary database are stored in db/migrate"". The refactoring here drastically reduces the internal API for migrations since we don't need to pass migrations_paths around to every single method. Additionally this change does not require any Rails applicationsto make changes unless they want to use the new public API. All of the
+class methods from the Migrator class were nodoc'd except for the
+migrations_paths and migrations_path getter/setters respectively.
+cc/ @tenderlove",refactoring,
+moby-35790,1,1,Remove support for referencing images by 'repository:shortid',"The repository:shortid syntax for referencing images is very little used, collides with with tag references can be confused with digest references.
+The repository:shortid notation was deprecated in Docker 1.13 through
+5fc7159 (#27207), and scheduled for removal in Docker 17.12.
+This patch removes the support for this notation.
+- Description for the changelog
+* Remove support for referencing images through `repository:short-id`. Support for this notation was deprecated in Docker 1.13, and scheduled for removal in Docker 17.12 []()
+- A picture of a cute animal (not mandatory but encouraged)
+
+(image source: https://csolsqs.com/centipede/centipede-020.jpg)",refactoring,
+cmssw-20834,1,1,[94x] L1T BMTF introduce packer and small emulator fix,"[94x] Introduce packer for BMTF, needed for 94x MC.
+
+bmtfStage2Raw packer is included in L1TDigi2Raw sequence.
+emulator, unmask eta at station 1 wheel+/-2 to match fw",new_feature,
+nixpkgs-33315,1,1,nixos/borgbackup: add test,"We had problems to get borg's own test suite running.
+This test is intended to perform a quick smoke test to see whether we
+have missed not any important dependency necessary to create backups
+with borg.
+Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",testing,
+rust-48158,2,1,Rollup of 8 pull requests,"Successful merges: #47846, #48033, #48087, #48114, #48126, #48130, #48133, #48151
+Failed merges:",other,
+framework-21447,1,1,[5.5] Fix spelling of 'optionally',,typo_error,
+salt-44355,2,1,add ability to customize cloud config options in cloud runner functioÂ…,"add ability to customize cloud config options in cloud runner functions: destroy and action
+What does this PR do?
+This adds the ability to pass in custom cloud config options, like providers, through the opts variable.
+What issues does this PR fix or reference?
+N/A
+Tests written?
+No
+Commits signed with GPG?
+No
+Please review Salt's Contributing Guide for best practices.
+See GitHub's page on GPG signing for more information about signing commits with GPG.",new_feature,
+django-9384,1,1,Fixed #28773 -- Forced pot files to use UNIX-style newlines,Thanks Hendy Irawan for the analysis and report.,bug_fix,
+opencv-9865,1,1,fix and clarify several grammar issues,"This pullrequest changes
+Fix a couple grammar issues and clarify sentences.",Doc PR,
+tensorflow-13596,0,0,"Revert ""Implementing ghost batch norm as defined in https://arxiv.orgÂ…","@chrisying fyi
+Reverting in case we want to change the parameter name and semantics.",other,
+salt-44498,3,0,Add Chocolatey execution timeout support,"What does this PR do?
+Add Chocolatey execution timeout support
+What issues does this PR fix or reference?
+Fixes: #41915
+Tests written?
+No
+Commits signed with GPG?
+Yes",new_feature,
+nixpkgs-34542,0,0,bonfire: bump arrow dependency (fixes build),"Motivation for this change
+package on master is broken due to a newer arrow package
+Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+tensorflow-14136,0,0,eager: Update broken link in README,,Doc PR,
+symfony-24285,0,0,[DI] Dont use JSON_BIGINT_AS_STRING,"QA
+
+Branch?
+3.4
+
+bug_fix?
+yes
+
+New feature?
+no
+
+BC breaks?
+no
+Deprecations?
+
+no
+Tests pass?
+yes
+
+Fixed tickets
+License
+MIT
+
+Doc PR
+Because it's incompatible with stringy keys, for unknown reason, see https://3v4l.org/IHSqv",bug_fix,
+symfony-25954,0,0,Release v2.8.34,"Changelog (since v2.8.33...v2.8.34)
+
+bug #25922 [HttpFoundation] Use the correct syntax for session gc based on Pdo driver (@tanasecosminromeo)
+bug #25933 Disable CSP header on exception pages only in debug (@ostrolucky)
+bug #25926 [Form] Fixed Button::setParent() when already submitted (@HeahDude)
+bug #25927 [Form] Fixed submitting disabled buttons (@HeahDude)
+bug #25891 [DependencyInjection] allow null values for root nodes in YAML configs (@xabbuh)
+bug #25848 [Validator] add missing parent isset and add test (@Simperfit)
+bug #25861 do not conflict with egulias/email-validator 2.0+ (@xabbuh)
+bug #25851 [Validator] Conflict with egulias/email-validator 2.0 (@emodric)
+bug #25837 [SecurityBundle] Don't register in memory users as services (@chalasr)
+bug #25835 [HttpKernel] DebugHandlersListener should always replace the existing exception handler (@nicolas-grekas)
+bug #25829 [Debug] Always decorate existing exception handlers to deal with fatal errors (@nicolas-grekas)
+bug #25824 Fixing a bug where the dump() function depended on bundle ordering (@weaverryan)
+bug #25789  Enableable ArrayNodeDefinition is disabled for empty configuration (@kejwmen)
+bug #25816 Problem in phar see mergerequest #25579 (@betzholz)
+bug #25781 [Form] Disallow transform dates beyond the year 9999 (@curry684)
+bug #25812 Copied NO language files to the new NB locale (@derrabus)
+bug #25801 [Router] Skip anonymous classes when loading annotated routes (@pierredup)
+bug #25657 [Security] Fix fatal error on non string username (@chalasr)
+bug #25799 Fixed Request::__toString ignoring cookies (@Toflar)
+bug #25755 [Debug] prevent infinite loop with faulty exception handlers (@nicolas-grekas)
+bug #25771 [Validator] 19 digits VISA card numbers are valid (@xabbuh)
+bug #25751 [FrameworkBundle] Add the missing enabled session attribute (@sroze)
+bug #25750 [HttpKernel] Turn bad hosts into 400 instead of 500 (@nicolas-grekas)
+bug #25490 [Serializer] Fixed throwing exception with option JSON_PARTIAL_OUTPUT_ON_ERROR (@diversantvlz)
+bug #25709 Tweaked some styles in the profiler tables (@javiereguiluz)
+feature #25669 [Security] Fail gracefully if the security token cannot be unserialized from the session (@thewilkybarkid)",version_update,
+salt-45958,0,0,Backporting #45935 to 2017.7,"What does this PR do?
+Back porting #45936 to 2017.7
+Commits signed with GPG?
+Yes
+Please review Salt's Contributing Guide for best practices.
+See GitHub's page on GPG signing for more information about signing commits with GPG.",refactoring,
+pandas-18786,0,0,TST: xfail geopandas downstream test,xref #18780,testing,
+nixpkgs-29012,0,0,maxx: allow launching individual components,"Motivation for this change
+Allow launching individual programs without need to run full environment.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+yii2-14785,3,0,Merging master into 2.1,"QA
+
+Is bugfix?
+no
+New feature?
+no
+Breaks BC?
+no
+
+Tests pass?
+?
+Fixed issues",other,
+scikit-learn-10060,3,0,[MRG] MAINT Remove duplicate import in test_pca.py,"Another flake8 error in #10042, the reason for master failure.",refactoring,
+terraform-16621,0,0,Fix panic with invalid module providers,"Missed validation when a module names a provider that doesn't exist. Catch the error in validation, and remove the panic.
+This will also be caught during graph transformation in the next iteration of the provider handling code.",bug_fix,
+nixpkgs-34045,1,1,Fix remaining 4.14 libelf outbreak,"Motivation for this change
+Fixing up some remainign breakage after the 4.14 libelf dependency issues.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+rust-46802,1,1,Point at def span on redefined name diagnostic,,other,
+kubernetes-56624,1,1,Change Auto-Repair e2e test tags.,Change Auto-Repair e2e test tags.,testing,
+opencv-9786,1,1,3D histogram,An example how to use calcHist for 3D histogram and how to display using viz,Doc PR,
+rails-31331,1,1,Add bulk alter support for PostgreSQL,"30176f2 introduced a bulk: true option to MySQL adapter's change_table,
+which aggregates multiple column changes into a single complex ALTER TABLE
+statement. This change extends the feature to PostgreSQL.
+Considerations
+
+MySQL's bulk_change_table lives in
+ConnectionAdapters::AbstractMysqlAdapter, perhaps these methods should be
+moved to ConnectionAdapters::PostgreSQLAdapter?",new_feature,
+rails-31154,1,1,Fix migration version in doc of #up_only,Related to #31082,Doc PR,
+kubernetes-56857,2,1,GCE: Parse comma-separated values in the config file,"This is necessary to support fields such as AlphaFeatures, which is
+usually populated through an environment variable.
+What this PR does / why we need it:
+Which issue(s) this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close the issue(s) when PR gets merged):
+Fixes #56833
+Release note:
+
+[GCE] Parse comma-separated values in the config file",bug_fix,
+salt-43442,1,1, [2016.11] Fixes to scheduler __pub values in kwargs,"Adding a small check to ensure we do not continue to populate kwargs with _pub items from the kwargs item.
+What does this PR do?
+Causes the scheduler to ignore the kwargs argument when creating the __pub values inside kwargs, otherwise we end with an ever growing dict of nested __pub values.
+What issues does this PR fix or reference?
+#43386
+Tests written?
+No
+Please review Salt's Contributing Guide for best practices.",bug_fix,
+framework-21269,0,0,[5.4] Fix invalid phpdoc on the Queue contract,Backport of #21248,refactoring,
+django-9378,0,0,Removed unused words from docs/spelling_wordlist.,,Doc PR,
+nixpkgs-29431,0,0,libxml2: 2.9.4 -> 2.9.5,"Motivation for this change
+This pull request is for staging because it involves a mass rebuild.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+django-9433,3,0,[WIP] Fix #28646 -- postgres migration issue,https://code.djangoproject.com/ticket/28646,bug_fix,
+nixpkgs-33125,0,0,coreutils: 8.28 -> 8.29,"See http://lists.gnu.org/archive/html/info-gnu/2017-12/msg00016.html
+for release announcement
+This PRÂ is for staging
+Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+tensorflow-17305,0,0,Bump the version of CUB in cmake build.,"We made the same upgrade for bazel build, but forgot about cmake.",version_update,
+salt-44901,0,0,change beacons.enable_job to beacons.enable_beacon,"What does this PR do?
+There was an error in beacon state module that invoke missing beacons.enable_job execution function.
+this PR correct it by invoking beacons.enable_beacon instead.
+Tests written?
+No
+Commits signed with GPG?
+No
+Please review Salt's Contributing Guide for best practices.
+See GitHub's page on GPG signing for more information about signing commits with GPG.",bug_fix,
+scikit-learn-9977,0,0,DOC: Fixed typo,"What does this implement/fix? Explain your changes.
+Corrects a typo in the TruncatedSVD docstring.",Doc PR,
+nixpkgs-33780,0,0,"Ruby: 2.2.8 -> 2.2.9, 2.3.5 -> 2.3.6, 2.4.2 -> 2.4.3","Motivation for this change
+Security issues described in https://www.ruby-lang.org/en/news/2017/12/14/net-ftp-command-injection-cve-2017-17405/
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+salt-43823,3,0,Update survey.py,"Python3 requires UTF-8 encoding for hashlib
+Error:
+File ""/usr/local/lib/python3.6/site-packages/salt/runners/survey.py"", line 174, in _get_pool_results
+digest = hashlib.sha256(str(minions[minion])).hexdigest()
+TypeError: Unicode-objects must be encoded before hashing",bug_fix,
+framework-22311,0,0,[5.6] Added missing asterisk for compileAuth DocBlock (Closes #22309),Simple documentation fix. Though I'm not sure where how to regenerate the docs or make a request to.,Doc PR,
+nixpkgs-29793,3,0,[WIP] gtk-platform: init at 2017-09-25,"Motivation for this change
+I though it provides style plugin too, but it's not. So makes no sense to me, not adding. Otherwise expression is ready (except meta).
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",other,
+framework-22604,3,0,[5.5] Reuse compileDropIndex,,other,
+nixpkgs-33724,1,1,minio: 2017-09-29T19-16-56Z -> 2018-01-02T23-07-00Z,"Motivation for this change
+https://github.com/minio/minio/releases/tag/RELEASE.2018-01-02T23-07-00Z
+@grahamc Contains security fixes (see: https://blog.minio.io/minio-release-jan-2nd-2018-security-advisory-ef0342a4ddba) so it might be worth to backport to 17.09
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+kubernetes-52290,1,1,Fixes device plugin re-registration handling logic to make sure:,"If a device plugin exits, its exported resource will be removed.
+No capacity change if a new device plugin instance comes up to replace the old instance.
+
+
+What this PR does / why we need it:
+Which issue this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close that issue when PR gets merged): fixes #52510
+Special notes for your reviewer:
+Release note:",bug_fix,
+rails-30683,1,1,Use `TOPLEVEL_BINDING` in rails runner command,"Binding to capture the local scope.
+This means that if a constant with same name as constant specified by the user exists in local scope, constant  defined in local will use.  This is different from what the user expects.
+Therefore, fixed to use top-level binding instead of local scope.
+Fixes #30644",bug_fix,
+nixpkgs-33009,1,1,netdata: 1.7.0 -> 1.9.0,"Motivation for this change
+Updates netdata from release 1.7 to 1.9.
+Things done
+https://github.com/firehol/netdata/releases/tag/v1.8.0
+https://github.com/firehol/netdata/releases/tag/v1.9.0
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+tensorflow-15008,1,1,Document iOS demo app in TF Lite Readme,"See the rendered markdown here: https://github.com/miaout17/tensorflow/blob/ios-example-readme/tensorflow/contrib/lite/README.md#ios-demo-app
+I think the demo app is already well-explained for the Android, so it just require a few lines to describe how to build the iOS version.",Doc PR,
+nixpkgs-33650,1,1,"whois: use idn, libiconv; update","Motivation for this change
+Support ""international"" domains, and update to latest while at it.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+kubernetes-53218,1,1,Adding e2e test for statefulsets for vsphere cloud provider,"What this PR does / why we need it:
+This PR adds a new e2e test for statefulsets for vSphere cloud Provider.
+Test does following tasks.
+
+Create a storage class with thin diskformat.
+Create nginx service.
+Create nginx statefulsets with 3 replicas.
+Wait until all Pods are ready and PVCs are bounded with PV.
+Verify volumes are accessible in all statefulsets pods with creating empty file.
+Scale down statefulsets to 2 replicas.
+Scale up statefulsets to 3 replicas.
+Scale down statefulsets to 0 replicas and delete all pods.
+Delete all PVCs from the test namespace.
+Delete the storage class.
+
+Which issue this PR fixes
+fixes # vmware#275
+Special notes for your reviewer:
+Test Logs
+root@k8s-dev-vm-02:~/divyenp/kubernetes# go run hack/e2e.go --check-version-skew=false --v --test --test_args='--ginkgo.focus=vsphere\sstatefulset\stesting'
+flag provided but not defined: -check-version-skew
+Usage of /tmp/go-build247641121/command-line-arguments/_obj/exe/e2e:
+  -get
+    	go get -u kubetest if old or not installed (default true)
+  -old duration
+    	Consider kubetest old if it exceeds this (default 24h0m0s)
+2017/10/18 19:24:33 e2e.go:55: NOTICE: go run hack/e2e.go is now a shim for test-infra/kubetest
+2017/10/18 19:24:33 e2e.go:56:   Usage: go run hack/e2e.go [--get=true] [--old=24h0m0s] -- [KUBETEST_ARGS]
+2017/10/18 19:24:33 e2e.go:57:   The separator is required to use --get or --old flags
+2017/10/18 19:24:33 e2e.go:58:   The -- flag separator also suppresses this message
+2017/10/18 19:24:33 e2e.go:77: Calling kubetest --check-version-skew=false --v --test --test_args=--ginkgo.focus=vsphere\sstatefulset\stesting...
+2017/10/18 19:24:33 util.go:154: Running: ./cluster/kubectl.sh --match-server-version=false version
+2017/10/18 19:24:34 util.go:156: Step './cluster/kubectl.sh --match-server-version=false version' finished in 290.682219ms
+2017/10/18 19:24:34 util.go:154: Running: ./hack/e2e-internal/e2e-status.sh
+Skeleton Provider: prepare-e2e not implemented
+Client Version: version.Info{Major:""1"", Minor:""9+"", GitVersion:""v1.9.0-alpha.1.1217+8b041da0f996c1-dirty"", GitCommit:""8b041da0f996c185438a7ed8282f92734a2ed0e7"", GitTreeState:""dirty"", BuildDate:""2017-10-19T00:46:00Z"", GoVersion:""go1.8.3"", Compiler:""gc"", Platform:""linux/amd64""}
+Server Version: version.Info{Major:""1"", Minor:""9+"", GitVersion:""v1.9.0-alpha.1.1293+d462bac7805f53"", GitCommit:""d462bac7805f536a43c7d5fb98aca138ba1237eb"", GitTreeState:""clean"", BuildDate:""2017-10-18T07:07:08Z"", GoVersion:""go1.8.3"", Compiler:""gc"", Platform:""linux/amd64""}
+2017/10/18 19:24:34 util.go:156: Step './hack/e2e-internal/e2e-status.sh' finished in 305.965323ms
+2017/10/18 19:24:34 util.go:154: Running: ./hack/ginkgo-e2e.sh --ginkgo.focus=vsphere\sstatefulset\stesting
+Conformance test: not doing test setup.
+Oct 18 19:24:35.808: INFO: Overriding default scale value of zero to 1
+Oct 18 19:24:35.808: INFO: Overriding default milliseconds value of zero to 5000
+I1018 19:24:36.073718    7768 e2e.go:383] Starting e2e run ""a63561de-b474-11e7-8f6b-0050569c26b8"" on Ginkgo node 1
+Running Suite: Kubernetes e2e suite
+===================================
+Random Seed: 1508379875 - Will randomize all specs
+Will run 1 of 713 specs
+
+Oct 18 19:24:36.132: INFO: >>> kubeConfig: /root/.kube/config
+Oct 18 19:24:36.139: INFO: Waiting up to 4h0m0s for all (but 0) nodes to be schedulable
+Oct 18 19:24:36.177: INFO: Waiting up to 10m0s for all pods (need at least 0) in namespace 'kube-system' to be running and ready
+Oct 18 19:24:36.321: INFO: 13 / 13 pods in namespace 'kube-system' are running and ready (0 seconds elapsed)
+Oct 18 19:24:36.321: INFO: expected 4 pod replicas in namespace 'kube-system', 4 are Running and Ready.
+Oct 18 19:24:36.326: INFO: Waiting for pods to enter Success, but no pods in ""kube-system"" match label map[name:e2e-image-puller]
+Oct 18 19:24:36.326: INFO: Dumping network health container logs from all nodes...
+Oct 18 19:24:36.338: INFO: Client version: v1.9.0-alpha.1.1217+8b041da0f996c1-dirty
+Oct 18 19:24:36.340: INFO: Server version: v1.9.0-alpha.1.1293+d462bac7805f53
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+------------------------------
+[sig-storage] vsphere statefulset 
+  vsphere statefulset testing
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/vsphere_statefulsets.go:155
+[BeforeEach] [sig-storage] vsphere statefulset
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/framework/framework.go:133
+STEP: Creating a kubernetes client
+Oct 18 19:24:36.349: INFO: >>> kubeConfig: /root/.kube/config
+STEP: Building a namespace api object
+STEP: Waiting for a default service account to be provisioned in namespace
+[BeforeEach] [sig-storage] vsphere statefulset
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/vsphere_statefulsets.go:63
+[It] vsphere statefulset testing
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/vsphere_statefulsets.go:155
+STEP: Creating StorageClass for Statefulset
+STEP: Creating statefulset
+Oct 18 19:24:36.489: INFO: Parsing statefulset from test/e2e/testing-manifests/statefulset/nginx/statefulset.yaml
+Oct 18 19:24:36.503: INFO: Parsing service from test/e2e/testing-manifests/statefulset/nginx/service.yaml
+Oct 18 19:24:36.514: INFO: creating web service
+Oct 18 19:24:36.527: INFO: creating statefulset e2e-tests-vsphere-statefulset-gnfmp/web with 3 replicas and selector &LabelSelector{MatchLabels:map[string]string{app: nginx,},MatchExpressions:[],}
+Oct 18 19:24:36.561: INFO: Found 0 stateful pods, waiting for 3
+Oct 18 19:24:46.567: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:24:56.568: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:25:06.568: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:25:16.566: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:25:26.567: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:25:36.567: INFO: Found 1 stateful pods, waiting for 3
+Oct 18 19:25:46.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:25:56.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:06.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:16.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:26.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:36.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:46.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:26:56.571: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:06.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:16.569: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:26.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:36.569: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:46.569: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:27:56.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:06.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:16.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:26.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:36.574: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:46.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:28:56.571: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:06.569: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:16.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:26.566: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:36.568: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:46.566: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:29:56.567: INFO: Found 2 stateful pods, waiting for 3
+Oct 18 19:30:06.568: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:06.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:06.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:30:16.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:16.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:16.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:30:26.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:26.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:26.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:30:36.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:36.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:36.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:30:46.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:46.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:46.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:30:56.566: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:56.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:30:56.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:06.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:06.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:06.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:16.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:16.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:16.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:26.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:26.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:26.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:36.568: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:36.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:36.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:46.568: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:46.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:46.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:31:56.568: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:56.568: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:31:56.568: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:32:06.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:06.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:06.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:32:16.571: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:16.571: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:16.571: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Pending - Ready=false
+Oct 18 19:32:26.567: INFO: Waiting for pod web-0 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:26.567: INFO: Waiting for pod web-1 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:26.567: INFO: Waiting for pod web-2 to enter Running - Ready=true, currently Running - Ready=true
+Oct 18 19:32:26.567: INFO: Waiting for statefulset status.replicas updated to 3
+Oct 18 19:32:26.605: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-0 -- /bin/sh -c ls -idlh /usr/share/nginx/html'
+Oct 18 19:32:27.170: INFO: stderr: """"
+Oct 18 19:32:27.170: INFO: stdout of ls -idlh /usr/share/nginx/html on web-0: 2 drwxr-xr-x 3 root root 4.0K Oct 19 02:25 /usr/share/nginx/html
+
+Oct 18 19:32:27.171: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-1 -- /bin/sh -c ls -idlh /usr/share/nginx/html'
+Oct 18 19:32:27.687: INFO: stderr: """"
+Oct 18 19:32:27.688: INFO: stdout of ls -idlh /usr/share/nginx/html on web-1: 2 drwxr-xr-x 3 root root 4.0K Oct 19 02:29 /usr/share/nginx/html
+
+Oct 18 19:32:27.688: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-2 -- /bin/sh -c ls -idlh /usr/share/nginx/html'
+Oct 18 19:32:28.177: INFO: stderr: """"
+Oct 18 19:32:28.177: INFO: stdout of ls -idlh /usr/share/nginx/html on web-2: 2 drwxr-xr-x 3 root root 4.0K Oct 19 02:32 /usr/share/nginx/html
+
+Oct 18 19:32:28.183: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-0 -- /bin/sh -c find /usr/share/nginx/html'
+Oct 18 19:32:28.690: INFO: stderr: """"
+Oct 18 19:32:28.690: INFO: stdout of find /usr/share/nginx/html on web-0: /usr/share/nginx/html
+/usr/share/nginx/html/lost+found
+
+Oct 18 19:32:28.690: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-1 -- /bin/sh -c find /usr/share/nginx/html'
+Oct 18 19:32:29.166: INFO: stderr: """"
+Oct 18 19:32:29.166: INFO: stdout of find /usr/share/nginx/html on web-1: /usr/share/nginx/html
+/usr/share/nginx/html/lost+found
+
+Oct 18 19:32:29.166: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-2 -- /bin/sh -c find /usr/share/nginx/html'
+Oct 18 19:32:29.696: INFO: stderr: """"
+Oct 18 19:32:29.696: INFO: stdout of find /usr/share/nginx/html on web-2: /usr/share/nginx/html
+/usr/share/nginx/html/lost+found
+
+Oct 18 19:32:29.707: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-0 -- /bin/sh -c touch /usr/share/nginx/html/1508380346587629054'
+Oct 18 19:32:30.171: INFO: stderr: """"
+Oct 18 19:32:30.171: INFO: stdout of touch /usr/share/nginx/html/1508380346587629054 on web-0: 
+Oct 18 19:32:30.171: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-1 -- /bin/sh -c touch /usr/share/nginx/html/1508380346587629054'
+Oct 18 19:32:30.653: INFO: stderr: """"
+Oct 18 19:32:30.653: INFO: stdout of touch /usr/share/nginx/html/1508380346587629054 on web-1: 
+Oct 18 19:32:30.654: INFO: Running '/root/divyenp/kubernetes/_output/bin/kubectl --server=https://10.192.38.85 --kubeconfig=/root/.kube/config exec --namespace=e2e-tests-vsphere-statefulset-gnfmp web-2 -- /bin/sh -c touch /usr/share/nginx/html/1508380346587629054'
+Oct 18 19:32:31.149: INFO: stderr: """"
+Oct 18 19:32:31.150: INFO: stdout of touch /usr/share/nginx/html/1508380346587629054 on web-2: 
+STEP: Scaling down statefulsets to number of Replica: 2
+Oct 18 19:32:31.263: INFO: Scaling statefulset web to 2
+Oct 18 19:32:51.314: INFO: Waiting for statefulset status.replicas updated to 2
+STEP: Verify Volumes are detached from Nodes after Statefulsets is scaled down
+Oct 18 19:32:51.524: INFO: Waiting for Volume: ""[vsanDatastore] 1874c359-f300-a0cc-fd7e-02002a623c85/kubernetes-dynamic-pvc-67b7e88c-b475-11e7-a38c-0050569c555f.vmdk"" to detach from Node: ""kubernetes-node2""
+Oct 18 19:33:01.657: INFO: Volume ""[vsanDatastore] 1874c359-f300-a0cc-fd7e-02002a623c85/kubernetes-dynamic-pvc-67b7e88c-b475-11e7-a38c-0050569c555f.vmdk"" appears to have successfully detached from ""kubernetes-node2"".
+STEP: Scaling up statefulsets to number of Replica: 3
+Oct 18 19:33:01.657: INFO: Scaling statefulset web to 3
+Oct 18 19:33:11.731: INFO: Waiting for statefulset status.replicas updated to 3
+Oct 18 19:33:11.747: INFO: Waiting for statefulset status.replicas updated to 3
+STEP: Verify all volumes are attached to Nodes after Statefulsets is scaled up
+Oct 18 19:33:13.823: INFO: Verify Volume: ""[vsanDatastore] 1874c359-f300-a0cc-fd7e-02002a623c85/kubernetes-dynamic-pvc-a6cf15ef-b474-11e7-a38c-0050569c555f.vmdk"" is attached to the Node: ""kubernetes-node4""
+Oct 18 19:33:15.990: INFO: Verify Volume: ""[vsanDatastore] 1874c359-f300-a0cc-fd7e-02002a623c85/kubernetes-dynamic-pvc-cfb65f92-b474-11e7-a38c-0050569c555f.vmdk"" is attached to the Node: ""kubernetes-node3""
+Oct 18 19:33:18.154: INFO: Verify Volume: ""[vsanDatastore] 1874c359-f300-a0cc-fd7e-02002a623c85/kubernetes-dynamic-pvc-67b7e88c-b475-11e7-a38c-0050569c555f.vmdk"" is attached to the Node: ""kubernetes-node2""
+[AfterEach] [sig-storage] vsphere statefulset
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/framework/framework.go:134
+Oct 18 19:33:18.323: INFO: Waiting up to 3m0s for all (but 0) nodes to be ready
+STEP: Destroying namespace ""e2e-tests-vsphere-statefulset-gnfmp"" for this suite.
+Oct 18 19:33:44.960: INFO: namespace: e2e-tests-vsphere-statefulset-gnfmp, resource: bindings, ignored listing per whitelist
+Oct 18 19:33:44.960: INFO: namespace e2e-tests-vsphere-statefulset-gnfmp deletion completed in 26.620223678s
+[AfterEach] [sig-storage] vsphere statefulset
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/vsphere_statefulsets.go:67
+Oct 18 19:33:44.960: INFO: Deleting all statefulset in namespace: e2e-tests-vsphere-statefulset-gnfmp
+
+Â• [SLOW TEST:548.654 seconds]
+[sig-storage] vsphere statefulset
+/root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/framework.go:22
+  vsphere statefulset testing
+  /root/divyenp/kubernetes/_output/local/go/src/k8s.io/kubernetes/test/e2e/storage/vsphere_statefulsets.go:155
+------------------------------
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSOct 18 19:33:45.006: INFO: Running AfterSuite actions on all node
+Oct 18 19:33:45.006: INFO: Running AfterSuite actions on node 1
+
+Ran 1 of 713 Specs in 548.875 seconds
+SUCCESS! -- 1 Passed | 0 Failed | 0 Pending | 712 Skipped PASS
+
+Ginkgo ran 1 suite in 9m9.728218415s
+Test Suite Passed
+2017/10/18 19:33:45 util.go:156: Step './hack/ginkgo-e2e.sh --ginkgo.focus=vsphere\sstatefulset\stesting' finished in 9m10.656371481s
+2017/10/18 19:33:45 e2e.go:81: Done
+
+VMware Reviewers: @rohitjogvmw @BaluDontu @tusharnt
+Release note:
+
+NONE",testing,
+nixpkgs-28989,0,0,Add XMonad test,Add a test that ensures XMonad starts up,testing,
+nixpkgs-30966,0,0,Add plexpy user id,"Motivation for this change
+When rebasing https://github.com/NixOS/nixpkgs/pull/30847, I left out the user id referred to by the default service configuration.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+framework-21104,0,0,Apply fixes from StyleCI,"This pull request applies code style fixes from an analysis carried out by StyleCI.
+
+For more information, click here.",bug_fix,
+moby-35632,0,0,Fix potential panic during plugin set.,"Plugin config can have Mounts without a 'Source' field. In such cases,
+performing a 'plugin set' on the mount source will panic the daemon. Its
+the same case for device paths as well. This detects the case and
+returns error.
+Signed-off-by: Anusha Ragunathan anusha.ragunathan@docker.com",bug_fix,
+nixpkgs-33415,0,0,hyperv-daemons: package and nixos module,"Motivation for this change
+This makes NixOS behave nicely under Hyper-V.
+We have been running this in production for the last 6 months or so on 2012, 2012R2 and 2016.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+salt-43792,3,0,Fix some formatting issues on the oxygen release notes page,"The release notes are restructured text files, not markdown. This PR reformats some sections of the release notes to use RST syntax.",Doc PR,
+yii2-14785,3,0,Merging master into 2.1,"QA
+Is bugfix?
+no
+
+New feature?
+no
+Breaks BC?
+no
+Tests pass?
+?
+Fixed issues",other,
+angular.js-16456,0,0,docs(*): Add CODE_OF_CONDUCT.md,"What kind of change does this PR introduce? (bug_fix, feature, docs update, ...)
+Docs update.
+What is the current behavior? (You can also link to an open issue here)
+There is no CODE_OF_CONDUCT.md in the repo.
+What is the new behavior (if this is a feature change)?
+There is CODE_OF_CONDUCT.md in the repo.
+Does this PR introduce a breaking change?
+No.
+Please check if the PR fulfills these requirements
+
+ The commit message follows our guidelines
+Fix/Feature: Docs have been added/updated
+Fix/Feature: Tests have been added; existing tests pass
+
+Other information:",Doc PR,
+nixpkgs-33408,3,0,x265: 2.5 -> 2.6,"Motivation for this change
+Things done
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+ NixOS
+ macOS
+ other Linux distributions
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+moby-34985,0,0,Remove use of deprecated filter functions,"Commit 0651183 (#34756) deprecated various filter functions in favor of new ones.
+This PR replaces:
+
+filters.Include() with filters.Contains()
+filters.ToParam(), filters.FromParam() with ToJSON(), FromJSON()
+
+ping @vdemeester @dnephin",refactoring,
+moby-35063,0,0,pkg/locker: add benchmarks, A picture of A cute animal (not mandatory but encouraged),other,
+kubernetes-57174,1,1,Automated cherry pick of #57172,"Cherry pick of #57172 on release-1.9.
+#57172: gce: split legacy kubelet node role binding and bootstrapper
+NONE",other,
+kubernetes-57549,1,1,fix azure disk not available issue when device name changed,"What this PR does / why we need it:
+There is possibility that device name(/dev/sd*) would change when attach/detach data disk in Azure VM according to  Troubleshoot Linux VM device name change.
+And We did hit this issue, see customer case.
+This PR would use /dev/disk/by-id instead of /dev/sd* for azure disk and /dev/disk/by-id would not change even device name changed.
+Which issue(s) this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close the issue(s) when PR gets merged):
+Fixes #57444
+Special notes for your reviewer:
+In a customer case, customer is unable to use azure disk in StatefulSet since /dev/sd* changed after detach/attach disk.
+we are using /dev/sd*(code is here) to ""mount -bind"" k8s path, while /dev/sd* could be changed when VM is attach/detaching data disks, see Troubleshoot Linux VM device name change
+And I have also checked related AWS, GCE code, they are using /dev/disk/by-id/ other than /dev/sd*, see aws code
+gce code
+Release note:
+
+fix azure disk not available when device name changed
+
+/sig azure
+/assign @rootfs
+@karataliu @brendandburns @khenidak",bug_fix,
+salt-44621,1,1,"Bugfix: errors in external pillar causes crash, instead of report of them","What issues does this PR fix or reference?
+Bugfix: crash when external pillar contains error, but internal doesn't.
+Previous Behavior
+Observed on SLE11/SP4 (2016.11.x) as well as on other versions (2017.7) and 'develop':
+    The minion function caused an exception: Traceback (most recent call last):
+      File ""/usr/lib64/python2.6/site-packages/salt/minion.py"", line 1445, in _thread_return
+        return_data = executor.execute()
+      File ""/usr/lib64/python2.6/site-packages/salt/executors/direct_call.py"", line 28, in execute
+        return self.func(*self.args, **self.kwargs)
+      File ""/usr/lib64/python2.6/site-packages/salt/modules/state.py"", line 550, in apply_
+        return sls(mods, **kwargs)
+      File ""/usr/lib64/python2.6/site-packages/salt/modules/state.py"", line 1021, in sls
+        err += __pillar__['_errors']
+      File ""/usr/lib64/python2.6/site-packages/salt/utils/context.py"", line 211, in __getitem__
+        return self._dict()[key]
+    KeyError: '_errors'
+
+Tests written?
+Yes
+Notes
+Possible issues:
+
+#43257
+
+SUSE tracked bug: http://bugzilla.suse.com/1068446",bug_fix,
+kubernetes-53190,1,1,Improve kubectl error messages,"Fixes #34457
+Part of work on #31267",refactoring,
+salt-43672,1,1,Back-port #43415 to 2016.11,Back-port #43415 to 2016.11,refactoring,
+rails-31540,2,1,Fix activestorage direct upload on ie11,"Direct upload on ie11 is not working because the response of the XMLHttpRequest is a string when xhr.responseType is set to ""json"" (see https://connect.microsoft.com/IE/feedback/details/794808).
+Parsing the response using JSON.parse when the response is a string solves the issue.
+My javascript skills are a bit ""rusty"", let me know if you see a better way to implement this fix.
+Closes #31531",bug_fix,
+rust-45429,1,1,Improve docs around `Once::call_once_force` and `OnceState`.,"Added some examples, clarify behavior, etc etc.
+Fixes #43472.",Doc PR,
+tensorflow-15600,1,1,Exclude tf_stream_executor.cmake for CPU only,"Bug introduced in #15099
+Fixes #3996",bug_fix,
+salt-44990,1,1,status.w: rework to support Darwin/BSD,"What does this PR do?
+
+
+This adds support for Darwin/FreeBSD/OpenBSD where the output
+
+
+does not contain several fields that Linux emits.
+
+
+While here it adds the from field which is reliably populated in the BSD implementation. Local logins are tracked as - or  the X Windows display.
+
+
+Due to the fact the Linux implementation of w emits nothing for local logins it makes the output harder to parse. So skip printing from on Linux entirely.
+
+
+Previous Behavior
+
+
+salt.localdomain:
+
+
+    |_
+
+
+      ----------
+
+
+      idle:
+
+
+          1:08PM
+
+
+      jcpu:
+
+
+          0
+
+
+      login:
+
+
+          123.123.123.123
+
+
+      pcpu:
+
+
+          tmux:
+
+
+      tty:
+
+
+          p1
+
+
+      user:
+
+
+          jasper
+
+
+      what:
+
+
+          client (/tmp/tmux-0/default)
+It would end up consuming the what column to fill out non-existent fields (jcpu and pcpu).
+New Behavior
+salt.localdomain:
+
+
+    |_
+      ----------
+      from:123.123.123.123
+      idle: 0
+      login:
+          1:08PM
+      tty:
+          p1
+      user:
+          jasper
+      what:
+
+
+          tmux: client (/tmp/tmux-0/default
+
+Tests written?
+No.
+Commits signed with GPG?
+Yes",new_feature,
+scikit-learn-10060,3,0,[MRG] MAINT Remove duplicate import in test_pca.py,"Another flake8 error in #10042, the reason for master failure.",refactoring,
+moby-36025,0,0,Fix golint error,"PR #36011 fixed almost all of the golint issues though there is still one golint error:
+https://goreportcard.com/report/github.com/docker/docker#golint
+Golint is a linter for Go source code.
+docker/daemon/reload.go
+Line 64: warning: redundant if ...; err != nil check, just return error instead. (golint)
+
+This fix fixes the last one.
+Signed-off-by: Yong Tang yong.tang.github@outlook.com",bug_fix,
+salt-45963,3,0, [2017.7] Fixes to modules/yumpkg.py,"What does this PR do?
+When callilng cmd.run_all with a list the exclude argument was being ignored and packages were being upgraded.  This change converts the list to a string with all the elements before sending it along to cmd.run_all.
+What issues does this PR fix or reference?
+#45924
+Commits signed with GPG?
+Yes
+Please review Salt's Contributing Guide for best practices.
+See GitHub's page on GPG signing for more information about signing commits with GPG.",bug_fix,
+react-10822,3,0,[Gatsby Docs] Experiment to find issue with Netlify,"In an attempt to reproduce a bug we were only seeing in Netlify builds, I'm pushing a PR with a really old version of the gatsby branch.
+Don't review/merge this. It's just an experiment.",Doc PR,
+salt-43671,0,0,[2017.7] Merge forward from 2017.7.2 to 2017.7,No conflicts.,version_update,
+tensorflow-16078,0,0,Update important RELNOTES and author list,,Doc PR,
+salt-45548,0,0,Update x509.py - documentation fix,"Fixed typo in docu string
+What does this PR do?
+Documentation fix
+What issues does this PR fix or reference?
+Documentation does not match the code base
+Tests written?
+No
+Commits signed with GPG?
+No",Doc PR,
+yii2-15335,0,0,Added FileHelper::unlink() that works well on any OS,"Q
+A
+
+
+
+
+Is bugfix?
+no
+
+
+New feature?
+no
+
+
+Breaks BC?
+no
+
+
+Tests pass?
+
+
+
+Fixed issues",new_feature,
+salt-46196,0,0,Fix for issue #46189.,"What does this PR do?
+Adds tmp_dir statement to file.managed. This alters the behavior of check_cmd.
+What issues does this PR fix or reference?
+Fixes issue #46189. This resolves issues with app-armored daemons not being able to read temp files outside of their own config directory.
+New Behavior
+e.g.:
+/etc/dhcp/dhcpd.conf:
+    file.managed:
+        tmp_dir: /etc/dhcp
+        check_cmd: dhcpd -t -cf
+
+Tests written?
+No
+Commits signed with GPG?
+No",bug_fix,
+symfony-26345,3,0,Release v2.7.42,"Changelog (since v2.7.41...v2.7.42)
+
+bug #26338 [Debug] Keep previous errors of Error instances (@Philipp91)
+bug #26312 [Routing] Don't throw 405 when scheme requirement doesn't match (@nicolas-grekas)
+bug #26298 Fix ArrayInput::toString() for InputArgument::IS_ARRAY args (@maximium)
+bug #25557 [WebProfilerBundle] add a way to limit ajax request (@Simperfit)
+bug #26228 [HttpFoundation] Fix missing ""throw"" in JsonResponse (@nicolas-grekas)
+bug #26211 [Console] Suppress warning from sapi_windows_vt100_support (@adawolfa)
+bug #26156 Fixes #26136: Avoid emitting warning in hasParameterOption() (@greg-1-anderson)
+bug #26183 [DI] Add null check for removeChild (@changmin.keum)
+bug #26159 created validator.tl.xlf for Form/Translations (@ergiegonzaga)
+bug #26100 [Routing] Throw 405 instead of 404 when redirect is not possible (@nicolas-grekas)
+bug #26040 [Process] Check PHP_BINDIR before $PATH in PhpExecutableFinder (@nicolas-grekas)
+bug #26012 Exit as late as possible (@greg0ire)
+bug #25893 [Console] Fix hasParameterOption / getParameterOption when used with multiple flags (@greg-1-anderson)
+bug #25940 [Form] keep the context when validating forms (@xabbuh)
+bug #25373 Use the PCRE_DOLLAR_ENDONLY modifier in route regexes (@mpdude)
+bug #26010 [CssSelector] For AND operator, the left operand should have parentheses, not only right operand (@arnaud CHASSEUX)
+bug #25971 [Debug] Fix bad registration of exception handler, leading to mem leak (@nicolas-grekas)
+bug #25962 [Routing] Fix trailing slash redirection for non-safe verbs (@nicolas-grekas)
+bug #25948 [Form] Fixed empty data on expanded ChoiceType and FileType (@HeahDude)
+bug #25972 support sapi_windows_vt100_support for php 7.2+ (@jhdxr)
+bug #25744 [TwigBridge] Allow label translation to be safe (@MatTheCat)",version_update,
+nixpkgs-31490,0,0,yakuake: 3.0.3 -> 3.0.4,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+moby-34755,3,0,convert 2 tests to API tests,ping @dnephin,testing,
+nixpkgs-35476,1,1,udisks2: add gobjectIntrospection to nativeBuildInputs,"Motivation for this change
+Same as in #35335.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+tensorflow-14176,1,1,change set_tf_cunn_version to set_tf_cudnn_version,,version_update,
+kubernetes-52667,1,1,federation: Move k/test/e2e_federation package to k/federation/test/e2e,"No functional change. Just move federation e2e tests inside k/federation directory, so that it is easy to move federation out of core.
+Issue ref: #52992
+Release note:
+NONE
+
+/cc @kubernetes/sig-federation-pr-reviews @irfanurrehman @madhusudancs",testing,
+nixpkgs-34088,1,1,xcbuild: platform version,"Motivation for this change
+Without this xcbuild can detect an incorrect version for store paths
+that have a sequence of digits in their hash. See https://hydra.nixos.org/build/67632952.
+ld: malformed 32-bit x.y.z version number: 85294
+/nix/store/yz966rdvw1blblvzs15pxpcd85294isw-MacOSX.platform/Developer/SDKs/MacOSX.sdk
+
+/cc @copumpkin @matthewbauer
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+kubernetes-52147,1,1,Deviceplugin refactoring: cleanup some unnecessary functions,"What this PR does / why we need it:
+cleanup some of unnecessary functions of deviceplugin to improve code readability
+Which issue this PR fixes
+fixes #51993
+Part1
+Special notes for your reviewer:
+Currently, it seems that func IsResourceNameValid is not used outside and could be changed to internal.
+But as Renaud commented, it is designed for potential usage from users outside.
+And I could not find a better position to place the func, except for file utils.go. So, shall we just retain the utils.go file, and maybe for possible expansion in the future?
+/cc @jiayingz @RenaudWasTaken @vishh
+Release note:
+
+NONE",refactoring,
+nixpkgs-30321,1,1,Add postgis 2.4.0,"nixos/postgis: add postgis 2.4.0
+doesn't remove v2.3.1. There are some big change in 2.4 that people may
+don't want. see https://postgis.net/docs/release_notes.html#idm41021
+Motivation for this change
+Postgis v2.3.1 doesn't work with postgresql v10. Adding v2.4 add support for v10
+This is my first PR here, please don't hesitate to comment. I changed a test, but I didn't know if it was better to create a new one or changing this one, since v2.2 isn't in nixpkgs anymore.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+salt-45519,2,1,For py2 use io.open io.* which is same as py3 open etc.,"Set a default buffer to 1 megabyte
+What does this PR do?
+For py2 use io.open io.* which is same as py3 open etc.
+Set a default buffer to 1 megabyte, improve salt performance the default buffer is badly calculated.
+Previous Behavior
+Need to code differently for PY2 and PY3
+New Behavior
+Can code the same
+Tests written?
+No new tests
+Commits signed with GPG?
+No",new_feature,
+tensorflow-13067,1,1,[Docs] tf.constant docstring: Whitespace fix,"This should allow the ```python section to properly render on the API page
+https://www.tensorflow.org/api_docs/python/tf/constant
+which (at the time of writing) displays the fences in plain-text.",Doc PR,
+salt-45536,0,0,Fix `unit.utils.test_configparser` for Windows,"What does this PR do?
+Fixes a decode error in the config parser on Py2 in Windows. Similar to #45403
+Uses os.linesep instead of hard-coded, Linux-specific line ending
+What issues does this PR fix or reference?
+saltstack/salt-jenkins#439
+Tests written?
+Yes
+Commits signed with GPG?
+Yes",bug_fix,
+nixpkgs-33210,3,0,bitlbee-discord: init at 2017-12-27,,other,
+salt-44216,0,0,fix typo,"What does this PR do?
+fix typo for clarity",typo_error,
+pandas-19335,0,0,DOC: organize 0.23 bug_fix whatsnew,,Doc PR,
+nixpkgs-30669,0,0,phpPackages.couchbase: remove warnings on php startup,"Motivation for this change
+On PHP Startup you got following warnings:
+[cb,WARN] (pcbc/ext L:418) igbinary serializer is not found
+[cb,WARN] (pcbc/ext L:425) zlib compressor is not found
+
+I want to remove these, Additionally needed is that the igbinary.so is loaded before couchbase.so in php.ini.
+Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+moby-34771,0,0,Revendor Microsoft/hcsshim @ v0.6.4,"Signed-off-by: John Howard jhoward@microsoft.com
+Simple revendor :)",other,
+rails-31480,3,0,"[ci skip] Use :amazon, not :s3, so that guides match the current code","The template that generates the config/storage.yml file has the Amazon S3 key specified as :amazon, not :s3.
+The guides should reflect the nomenclature, given that every other service also has the name of the company as the key (:google, :microsoft).",other,
+nixpkgs-33243,0,0,bdsync: init at 0.10.1,"Motivation for this change
+bdsync: a fast block device synchronizing tool https://github.com/TargetHolding/bdsync
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",new_feature,
+framework-23337,0,0,[5.6] Add ability to extend DatabaseNotification model attributes on create,"Building of attributes array for the Illuminate\Notifications\DatabaseNotification model inside Illuminate\Notifications\Channels\DatabaseChannel extracted to method, what allow us to extend or overwrite default attributes.
+I found it useful because I were needed to add seen_at and some more attributes related to my application and were needed to extend default DatabaseNotification model. And instead just modifying attributes in DatabaseChannel class on notification creation, we need to copy-paste send method. That means that if there will be changes in send method in the future - we will require to update extended implementations.
+With this change we can do:
+<?php
+
+namespace App\Notification\Channels;
+
+use Illuminate\Notifications\Channels\DatabaseChannel as BaseDatabaseChannel;
+use Illuminate\Notifications\Notification;
+
+class DatabaseChannel extends BaseDatabaseChannel
+{
+    protected function buildPayload($notifiable, Notification $notification)
+    {
+        return array_merge(parent::buildPayload($notifiable, $notification), [
+            'seen_at' => null,
+            'after_updrade' => 'Sleep well',
+        ];
+    }
+}
+Additionally it helps us to keep the code DRY.",new_feature,
+nixpkgs-31005,0,0,pwgen: 2.07 -> 2.08,"Motivation for this change
+Update
+Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-30536,0,0,"oraclejdk: 8u144 -> 8u151, 8u152; 9 -> 9.0.1 [Critical security fixes]","Motivation for this change
+
+Critical security fixes
+Other changes
+
+http://www.oracle.com/technetwork/java/javase/9-0-1-relnotes-3883752.html
+http://www.oracle.com/technetwork/java/javase/8u151-relnotes-3850493.html
+http://www.oracle.com/technetwork/java/javase/8u152-relnotes-3850503.html
+http://www.oracle.com/technetwork/security-advisory/cpuoct2017-3236626.html
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+nixpkgs-30675,3,0,go-ethereum service: init,"Motivation for this change
+Added a service for go-ethereum.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.
+
+
+cc @mbrock @lethalman",new_feature,
+kubernetes-53239,1,1,Correct APIGroup for RoleBindingBuilder Subjects,"This change corrects RoleBindingBuilder to use the RBAC API group with users and groups as subjects (service accounts use the empty string since they are in the legacy core group).  This is based on the defaulting in pkg/apis/rbac/v1/defaults.go#SetDefaults_Subject.  This is required because the bootstrap RBAC data is built with these helpers and does not go through defaulting, whereas the data retrieved from the server has already gone through defaulting.  This can lead to the reconciliation code incorrectly adding duplicate subjects because it believes that they are missing (since the API groups do not match).
+Signed-off-by: Monis Khan mkhan@redhat.com
+Fixes an issue with RBAC reconciliation that could cause duplicated subjects in some bootstrapped rolebindings on each restart of the API server.
+
+/assign @liggitt
+/sig auth
+Fixes #53296
+Fixes openshift/origin#16611",bug_fix,
+scikit-learn-10151,1,1,DOC Fix broken link in ROC example,Will self-check and merge when CIs are green.,Doc PR,
+symfony-24582,1,1,[DI] Enhance service locator error message,"Q
+A
+
+
+
+
+Branch?
+3.3
+
+
+bug_fix?
+no
+
+
+New feature?
+no
+
+
+BC breaks?
+no
+
+
+Deprecations?
+no
+
+
+Tests pass?
+yes
+
+
+Fixed tickets
+#24555
+
+
+License
+MIT
+
+
+Doc PR
+-
+
+See linked issue.",refactoring,
+salt-45689,1,1,"Add ""exclude_patterns"" option to Sentry log handler.","What does this PR do?
+Add ""exclude_patterns"" option to Sentry log handler.
+What issues does this PR fix or reference?
+Tests written?
+No
+Commits signed with GPG?
+No",new_feature,
+rails-31093,1,1,Change output log about skipping instalation of Active Storage,"Using of ""`"" is preferable over ""'"" to express console command in output log",new_feature,
+nixpkgs-30872,1,1,systemd: remove udev attributes,"Motivation for this change
+Things done
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+ NixOS
+ macOS
+ other Linux distributions
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",other,
+rails-31456,2,1,Suppress `warning: BigDecimal.new is deprecated` in Active Job,"Summary
+BigDecimal.new has been deprecated in BigDecimal 1.3.3
+which will be a default for Ruby 2.5.
+Refer ruby/bigdecimal@5337373
+
+This commit suppresses this warning:
+
+$ bundle exec ruby -w -Itest test/cases/argument_serialization_test.rb
+Using inline
+test/cases/argument_serialization_test.rb:15: warning: BigDecimal.new is deprecated
+Run options: --seed 40402
+
+.......................
+
+Finished in 0.042038s, 547.1180 runs/s, 927.7219 assertions/s.
+23 runs, 39 assertions, 0 failures, 0 errors, 0 skips
+$
+
+This commit has been made as follows:
+
+cd activejob/
+git grep -l BigDecimal.new | grep \.rb | xargs sed -i -e ""s/BigDecimal.new/BigDecimal/g""
+
+
+This commit has been tested with these Ruby versions:
+
+ruby 2.5.0dev (2017-12-15 trunk 61262) [x86_64-linux]
+ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-linux]
+ruby 2.3.5p376 (2017-09-14 revision 59905) [x86_64-linux]
+ruby 2.2.8p477 (2017-09-14 revision 59906) [x86_64-linux]",bug_fix,
+opencv-9866,1,1,doc: Make MATHJAX_RELPATH configurable through cmake,"This comes from Debian, where there is a patch changing MATHJAX_RELPATH to a local installation of MathJax.
+I'd prefer to use a build-time option -DOCV_MATHJAX_RELPATH (or whatever, I picked that name, but it's really arbitrary), over a local patch.
+Thank you for the consideration!",Doc PR,
+framework-21551,0,0,[5.5] added secure & http only params to match cookie make params,"cookie helper function now matches cookie make function from CookieJar.php
+Discussion #21542",new_feature,
+nixpkgs-31603,0,0,configuration-ghc-7.10.x.nix: Remove missing attributes.,"Motivation for this change
+Remove missing attributes since their existence cause errors and can not serve any purpose.
+Please see the problematic command example in each individual commit message.
+Things done
+
+Remove missing attributes from nix expression file.
+Problematic commands was running without any error.
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+salt-44188,0,0,yumpkg: Check pkgname instead of name to see if it is a kernel pkg,"We should have been checking pkgname instead of name all along, but this
+never bit us until 6638749 started passing None for the name param.
+Fixes #44150",bug_fix,
+terraform-16866,0,0,accessing count directly in an output should is OK,"There should be no warning when accessing a resource's count value
+directly in an output.
+Fixes #16864",bug_fix,
+nixpkgs-28807,0,0,openmw: 0.41 -> 0.42,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing
+(nix.useSandbox on NixOS,
+or option build-use-sandbox in nix.conf
+on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-29962,0,0,hamster-time-tracker: wrap services,"Motivation for this change
+Hamster did not start because the PYTHONPATH was not set for its services.
+Closes: #27498
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+nixpkgs-34814,0,0,teamspeak_client: 3.1.7 -> 3.1.8,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+react-11648,3,0,[test ci] Make a typo,Just messing around.,typo_error,
+framework-21546,3,0,helper to return a json response,"helper to return a json response from the application, i think is better then response()->json();",new_feature,
+salt-46219,0,0,Fix `unit.modules.test_network` for Windows,"What does this PR do?
+Fixes a Unicode issue in win_inet_pton. Use six.test_type instead of six.u for converting to unicode. Probably exposed by conversion to unicode_literals throughout salt code. Found in by failing test.
+What issues does this PR fix or reference?
+saltstack/salt-jenkins#439
+Tests written?
+No
+Commits signed with GPG?
+Yes",bug_fix,
+nixpkgs-30779,0,0,"Revert ""vc: Broken on i686""","Motivation for this change
+Not broken
+This reverts commit c58c1f3.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",other,
+rust-47014,1,1,Add tests to fixed ICEs,"Closes #27078. Closes #27985. Closes #39848. Closes #42164.
+Closes #42479. Closes #45662. Closes #45965. Closes #46152.",testing,
+cmssw-21501,2,1,Cleanup SCEnergyCorrections.h,"This file needs header guards. It also references SuperCluster,
+CaloClusterPtrVector and ParameterSet, so we also need to include
+the associated headers to make this file parsable on its own.",refactoring,
+tensorflow-16901,1,1,Fix the missing Windows cuDNN reference.,,bug_fix,
+nixpkgs-30922,1,1,Update bpython to 0.17,"Motivation for this change
+As mentioned by @adisbladis, pythonPackages is a mess and needs to be cleaned up.
+I bumped the bpython package to 0.17, cleaned it up, and added curtsies and pyte, which are both dependencies of bpython (at least now)
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+[] Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-29881,1,1,"nixos/tinc: add ""restartTriggers"" back","Add ""restartTriggers"" back to restart the Tinc daemon when its peer is removed.
+Reverted #27660
+Discussed
+here: #27660 (comment)
+cc @fpletz",new_feature,
+opencv-9887,1,1,Updated TBB package to 2018.1,"Looks like MD5 sum is not valid for old package, current 4.4.3.tar.gz archive has checksum 8e3e39e1fdfb3f7c3a5ac8ec1afe186e
+Tested on Linux.
+build_tbb=ON",version_update,
+kubernetes-55858,1,1,add test for slice,"Signed-off-by: yanxuean yan.xuean@zte.com.cn
+What this PR does / why we need it:
+Which issue(s) this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close the issue(s) when PR gets merged):
+Fixes #
+Special notes for your reviewer:
+Release note:
+NONE",testing,
+nixpkgs-36038,1,1,supercollider: 3.8.1 -> 3.9.1,"Semi-automatic update. These checks were performed:
+
+built on NixOS
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/scsynth -v and found version 3.9.1
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/supernova -h got 0 exit code
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/supernova --help got 0 exit code
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/supernova -v and found version 3.9.1
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/supernova --version and found version 3.9.1
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/sclang -h got 0 exit code
+ran /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1/bin/sclang -v and found version 3.9.1
+found 3.9.1 with grep in /nix/store/4wlhzjj8k4a49dvpzgwhll2m03hvvcz9-supercollider-3.9.1",version_update,
+pandas-18822,1,1,BUG: Fixed Categorical.Equals with unordered,"The original issue was already fixed. I added tests to verify (but no whatsnew entry).
+This addes tests and a fix for #16603 (comment) about Categorical.equals
+Closes #16603",bug_fix,
+nixpkgs-32633,0,0,rkrlv2: b1.0 -> b2.0,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-30798,0,0,perlPackages.IOPager: 0.06 -> 0.39 (for sqitch),"Motivation for this change
+There's a bug when running sqitch log due to this very old version of IOPager. The bug is reported here, without resolution: https://groups.google.com/d/msg/sqitch-users/pKCrK4cMIMI/baCsatToDwAJ
+Can't locate object method ""TIESCALAR"" via package ""IO::Pager::Unbuffered""
+at /nix/store/y5fas16nfwaqsz5wm1midmw5h7i7vf5b-perl-IO-Pager-0.06/lib/perl5/site_perl/5.24.2/IO/Pager/Unbuffered.pm line 26.
+
+It turns out that upgrading IOPager to 0.39 resolves the bug. Besides sqitch, there don't seem to be any other packages in nixpkgs that use IOPager.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+framework-21001,3,0,Remove unnecesary conditionals in helpers file,This Pull Request switches some conditionals to ternary operators in the helpers file.,refactoring,
+nixpkgs-30209,3,0,zile: 2.4.13 -> 2.4.14,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+salt-45888,0,0,Fix cloud tests,"What does this PR do?
+Fixes cloud tests
+Tests written?
+Yes
+Commits signed with GPG?
+Yes",bug_fix,
+tensorflow-16687,3,0,[DO NOT MERGE] Testing,,other,
+rails-32002,0,0,Fix custome serializer setting,"The serializer should be set up in after_initialize so that it work properly even if the user specifies serializer with initializers.
+Also, since custom_serializers is Array, it needs to be flattened before setting the value.",bug_fix,
+salt-44007,3,0,add python exec module for running python script,"What does this PR do?
+For show_full_context, it is useful to have this as a serializable dictionary so that it can be dumped and actually parsed using
+{{show_full_context|yaml(False)}}
+What issues does this PR fix or reference?
+Previous Behavior
+show_full_context returns an object mapping
+New Behavior
+show_full_context returns a serializable dictionary
+Tests written?
+No
+Moved from #43940",new_feature,
+nixpkgs-31808,0,0,grafana: 4.6.1 -> 4.6.2,"Motivation for this change
+New release
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-32236,0,0,enpass: fix install to work with firefox webextensions,"With new Firefox 57 and WebExtensions, the new addon uses Firefox'
+Native Messaging mechanism to communicate with local programs (here
+the main enpass program). This commit activates EnpassNMHost, a binary
+that bootstraps communication between the two.
+Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+django-9005,0,0,Fixed test modifying data created in setUpTestData,,bug_fix,
+salt-45665,0,0,add salt.modules.vmctl to doc index,"What does this PR do?
+Adds the vmctl module from #45164 to the documentation.
+Tests written?
+No
+Commits signed with GPG?
+No", refactoring,
+nixpkgs-35432,0,0,"syncthing,qsyncthingtray: remove syncthing-inotify","Motivation for this change
+syncthing-inotify is deprecated and replaced by the new syncthing ""fswatcher"" feature.
+Fixes #34957
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.", refactoring,
+nixpkgs-31710,0,0,nodejs: 9.0.0 -> 9.2.0 &  libuv: 1.15.0 -> 1.16.1,"Motivation for this change
+Tested against current master (c189dfb) but rebased against staging because of the mass-rebuild libuv causes;
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+django-9157,3,0,Removed unneeded call to __init__ in classes that don't inherit.,,refactoring,
+cmssw-21520,2,1,Added include for ostream to MonitorXMLParser.h,"We use std::ostringstream in this header, so we also need to
+include the associated header to make this file parsable on its
+own.",refactoring,
+cmssw-21501,2,1,Cleanup SCEnergyCorrections.h,"This file needs header guards. It also references SuperCluster,
+CaloClusterPtrVector and ParameterSet, so we also need to include
+the associated headers to make this file parsable on its own.",refactoring,
+kubernetes-52863,1,1,Create Conformance document to display all tests that belong to Confo…,"…rmance suite
+
+What this PR does / why we need it:
+Which issue this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close that issue when PR gets merged): fixes #
+Special notes for your reviewer:
+Release note:
+
+NONE",Doc PR,
+cmssw-22212,2,1,add exception for undefined functions to FormulaEvaluator,Follow-up on issue #21851,refactoring,
+terraform-16377,2,1,[WIP] module provider inheritance,"The primary goal of this PR is to define the new provider inheritance model, while hoisting the provider inheritance mechanisms into the config itself. The new providers field in the module block allows users to declare a provider configuration to apply within a module. Since this new inheritance mechanism is configuration based, it is much simpler to apply all the inheritance rules within the config, rather than searching for provider configurations during graph evaluation.
+
+
+This also adds the version field to the module block, though it is not yet used.
+
+
+Orphaned modules:
+
+
+While the config inheritance is fully solved here, the ""adoption"" of orphaned resources when they have no module configuration is broken. The tests to handle this are commented out, but need to be resolved before 0.11.
+
+
+There needs to be a distinction between config inheritance and provider adoption. It may make sense to only create missing providers at the root level and attach and orphaned resources regardless of path, but that is a more intrusive patch to the graph, and breaks many assumption about provider always having the same path as their resources. It may also be feasible to have the missing providers be a proxy to the root level provider, but that can wait as well.",new_feature,
+nixpkgs-35099,0,0,pythonPackages.yarl: 1.1.0 -> 1.1.1,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+nixpkgs-29900,0,0,nixos/tests/gnome3-gdm: Increase memory limit,"Motivation for this change
+The test was failing on x86_64 prematurely due to memory being exhausted.
+See also 3b9f0c6
+The test is still failing but at least the OOM killer is not invoked.
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",refactoring,
+salt-45963,3,0,[2017.7] Fixes to modules/yumpkg.py,"What does this PR do?
+When callilng cmd.run_all with a list the exclude argument was being ignored and packages were being upgraded.  This change converts the list to a string with all the elements before sending it along to cmd.run_all.
+What issues does this PR fix or reference?
+#45924
+Commits signed with GPG?
+Yes
+Please review Salt's Contributing Guide for best practices.
+See GitHub's page on GPG signing for more information about signing commits with GPG.",bug_fix,
+salt-45773,0,0,Fix misspellings,f49d0a0 had some misspellings that were not caught before it was merged,other,
+nixpkgs-34151,0,0,deis: 1.13.3 -> 1.13.4,"Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+django-9726,0,0,Fixed #29159 -- Made ModelChoiceIterator reuse QuerySet result cache,"When __len__ is called (e.g. when casting to list or tuple), the
+QuerySet is evaluated and the result cache populated. iterator()
+should not be called on the QuerySet after that, it would reset the
+result cache and trigger a second query.
+https://code.djangoproject.com/ticket/29159",bug_fix,
+salt-45221,0,0,[2017.7] Merge forward from 2016.11 to 2017.7,"Conflicts:
+
+salt/modules/win_lgpo.py",Other,
+framework-21344,0,0,[5.5] Added route phpdoc,Fix comments adding the redirect and view methods,bug_fix,
+tensorflow-13322,3,0,<DO NOT MERGE> experimental PR,,Other,
+salt-44864,3,0,"Convert string literals to unicode for acl, defaults, etc.","Also remove string formatting from log messages
+The directories updated by this commit are:
+
+salt/acl/
+salt/cache/
+salt/defaults/
+salt/executors/
+salt/queues/
+salt/serializers/
+salt/spm/
+salt/tokens/
+salt/tops/
+salt/wheel/",new_feature,
+framework-23075,0,0,[5.6] Add slack attachment pretext attribute,,new_feature,
+nixpkgs-30218,0,0,escrotum: Init at 2017-01-28,"Motivation for this change
+scrot has bugs with region selection and is unmaintained upstream.
+Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",bug_fix,
+nixpkgs-30657,0,0,haskellPackages.amqp-utils: fix dependencies,"Motivation for this change
+just a suggestion to make amqp-utils buildable
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",refactoring,
+django-9599,3,0,Added error-message for too long PostgreSQL database name,"PostgreSQL imposes a limit of 63 bytes for all identifiers by default.
+Added a 'NotSupportedError' if the NAME value in settings.DATABASES
+is longer than 63 characters.
+Uses 'len' method instead of 'sys.getsizeof' for getting the size.",new_feature,
+scikit-learn-10421,3,0,WIP try out numpydoc#150 (cross-reference links in param types),"This is to see how numpy/numpydoc#150 works on our API reference docs, and whether it slows down doc building substantially.",Other,
+rails-31652,1,1,Change Active Storage destroy callbacks,"There is concern that only blob are deleted depending on the before_destroy definition order which throws abort.
+For example following code doesn't destroy an user, and keep a record of active_storage_attachments, but a record of active_storage_blobs is destroyed.
+class User < ApplicationRecord
+  has_one_attached :avatar
+  
+  before_destroy { throw(:abort) }
+
+  # Currently it works fine if there is a code on lower line
+  # has_one_attached :avatar
+end
+refs:
+carrierwave/activerecord.rb · carrierwaveuploader/carrierwave
+paperclip/has_attached_file.rb · thoughtbot/paperclip",refactoring,
+kubernetes-58171,1,1,Changing Flexvolume plugin directory on COS in GCE to a durable directory,"What this PR does / why we need it: The original /etc/srv/... directory is in an overlayfs over a path in /tmp, so Flexvolume drivers are erased across node restarts for any reason. Changing it to non-tmpfs location.
+Also removing redundant Flexvolume path injection in config-test.sh because it's already in cluster/common.sh.
+Which issue(s) this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close the issue(s) when PR gets merged):
+Fixes #57353
+Release note:
+
+[action required] Default Flexvolume plugin directory for COS images on GCE is changed to `/home/kubernetes/flexvolume`.
+
+/assign @roberthbailey @saad-ali
+/cc @chakri-nelluri @wongma7
+/sig storage",refactoring,
+kubernetes-52091,1,1,Bugfix: Improve how JobController use queue for backoff,"What this PR does / why we need it:
+In some cases,  the backoff delay for a given Job is reset unnecessarily.
+the PR improves how JobController uses queue for backoff:
+
+Centralize the key ""forget"" and ""re-queue"" process in only on method.
+Change the signature of the syncJob method in order to return the
+information if it is necessary to forget the backoff delay for a given
+key.
+
+Which issue this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close that issue when PR gets merged): fixes #
+Links to #51153
+Special notes for your reviewer:
+Release note:",refactoring,
+cmssw-21146,1,1,GEM bugfix for issue #20772,"@slava77, @kpedro88, @calabria
+The standalone ME0Muon is no longer needed, so i removed it from the standard reco chain.
+GEMSegmentBuilder.cc has been fixed.
+ME0SegAlgoRU.cc had a warning msg.",bug_fix,
+nixpkgs-29041,2,1,pulseaudio: 10.0 -> 11.0,"Remove darwin patch that has been included in the upstream release, tested on my desktop with a variety of programs. Nox review has not been run yet but I plan on it
+Motivation for this change
+All sorts of fixes and new hardware support! Check out the changelog here:
+https://www.freedesktop.org/wiki/Software/PulseAudio/Notes/11.0/
+Things done
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ Linux
+
+
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+react-11648,3,0,[test ci] Make a typo,Just messing around.,other,
+framework-22264,0,0,"[5.5] Clean up default ""where"" operator",,refactoring,
+framework-22481,0,0,Apply fixes from StyleCI,"This pull request applies code style fixes from an analysis carried out by StyleCI.
+
+For more information, click here.",bug_fix,
+nixpkgs-32987,0,0,adapta-backgrounds: 0.5.1.1 -> 0.5.2.3,"Motivation for this change
+Update to version 0.5.2.3
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+react-10822,3,0,[Gatsby Docs] Experiment to find issue with Netlify,"In an attempt to reproduce a bug we were only seeing in Netlify builds, I'm pushing a PR with a really old version of the gatsby branch.
+Don't review/merge this. It's just an experiment.",Other,
+tensorflow-16437,0,0,Update README.md,"-png, --sample_index options are not available in google-perftools (2.4-0ubuntu5.16.04.1).
+Also, since Ubuntu 16.04 wrongly recommends to install pprof from 'tau' package
+
+The program 'pprof' is currently not installed. You can install it by typing:
+sudo apt install tau
+
+the typical user command should probably be
+google-pprof --pdf --nodecount=100 <filename>",Doc PR,
+framework-21391,0,0,[5.6] Add batch number to `migrate:status` command,"Add the batch number to migrate:status command
+so I don't need to fallback to db to see batch number",new_feature,
+react-10638,0,0,Remove performWithPriority from scheduler,The functions removed are no longer used anywhere. Closes #10637,refactoring,
+tensorflow-14412,3,0,Fix typo. <Copybara Experiment DO NOT MERGE>,Fix typo in tensorflow/python/layers/base_test.py,Other,
+nixpkgs-32426,0,0,dmensamenu: 1.0.0 -> 1.1.0,"Motivation for this change
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+django-9473,0,0,Fixed #28934 -- Prevented Cast from truncating microseconds on Oracle.,"https://code.djangoproject.com/ticket/28934
+test_cast_from_python_to_datetime should fail on SQLite (see #9460).", bug_fix,
+symfony-24947,3,0,[HttpFoundation] Do not throw when `setSaveHandler` is called and headers have already been sent,"Q
+A
+
+
+
+
+Branch?
+2.7
+
+
+bug_fix?
+yes
+
+
+New feature?
+no
+
+
+BC breaks?
+no
+
+
+Deprecations?
+no
+
+
+Tests pass?
+yes
+
+
+Fixed tickets
+#24941
+
+
+License
+MIT
+
+
+Doc PR
+ø
+
+In #23711 we've introduced this throw... not sure why. Apparently, no tests are failing if we remove this. Bug #24941 has been opened because of this throw. 3 good reasons to remove it.",refactoring,
+nixpkgs-30620,0,0,fzy: 0.7 -> 0.9,"Motivation for this change
+https://github.com/jhawthorn/fzy/releases
+Things done
+
+
+ Tested using sandboxing (nix.useSandbox on NixOS, or option build-use-sandbox in nix.conf on non-NixOS)
+Built on platform(s)
+
+ NixOS
+ macOS
+ other Linux distributions
+
+
+ Tested via one or more NixOS test(s) if existing and applicable for the change (look inside nixos/tests)
+ Tested compilation of all pkgs that depend on this change using nix-shell -p nox --run ""nox-review wip""
+ Tested execution of all binary files (usually in ./result/bin/)
+ Fits CONTRIBUTING.md.",version_update,
+rust-45364,1,1,make `erase_regions_ty` query anonymous,r? @michaelwoerister,new_feature,
+kubernetes-52034,2,1,apiextensions: add defaulting for customresource validation,"Add defaulting for customresource validation. Need to bump go-openapi/validate to be able to use the feature from upstream.
+The validate package depends on other go-openapi packages, hence other packages are also bumped.
+Release note:
+
+NONE
+
+/cc @sttts @deads2k",new_feature,
+tensorflow-14695,1,1,Update CONTRIBUTING.md,Add Objective-C Style guide to list.,Doc PR,
+nixpkgs-35930,1,1,omniorb: 4.2.0 -> 4.2.2,"Semi-automatic update. These checks were performed:
+
+built on NixOS
+ran /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2/bin/omniidl -h got 0 exit code
+ran /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2/bin/omkdepend -h got 0 exit code
+ran /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2/bin/omkdepend --help got 0 exit code
+ran /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2/bin/omniNames --help got 0 exit code
+found 4.2.2 with grep in /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2
+found 4.2.2 in filename of file in /nix/store/h94k1a3vvna29as5663ch6vffml5p07w-omniorb-4.2.2
+
+cc ""@smironov""",version_update,
+kubernetes-59821,1,1,Update to latest gophercloud/gophercloud for 1.10,"What this PR does / why we need it:
+Looks like we end up with just the following change:
+gophercloud/gophercloud#730
+(Prevent Recursive BuildRequestBody)
+The full set of changes between the old and new SHA are here:
+gophercloud/gophercloud@8e59687...6da026c
+Which issue(s) this PR fixes (optional, in fixes #<issue number>(, fixes #<issue_number>, ...) format, will close the issue(s) when PR gets merged):
+Fixes #
+Special notes for your reviewer:
+Release note:
+
+NONE",version_update,
+react-11653,2,1,Try to fix CI for missing error code,"Not yet sure I understand why error code seems to exist in the message (since we parsed it) but not in the file with the error codes.
+Attempts to fix CI failure in #11652.",Other,
+react-10967,2,1,Fix website font flicker,"I tried moving the TypeKit tag from the bottom of the <body> to the <head> but this didn't resolve the flicker. According to the docs this is actually expected. TBH this flicker existed on the legacy site as well so I'm not sure how high-priority it is but it is annoying.
+So I'm now leaning towards removing TypeKit entirely and just using sans-serif font. Joe is going to circle back to this tomorrow and try out some other fonts that don't require using TypeKit (eg San Francisco). I think we could merge this PR for now (to remove the flicker) and then merge his later (to make things look better).
+Netlify preview: https://59ce854bdf99532e00fdf5d0--reactjs.netlify.com/
+cc @vjeux",bug_fix,
